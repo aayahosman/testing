@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoodEats Wireframe</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background-color: #2c5aa0;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 20px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: #ff6b35;
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: white;
+            border: 1px solid white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .app-download {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* Filters */
+        .filters {
+            background-color: white;
+            padding: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .view-toggle {
+            margin-left: auto;
+            display: flex;
+            background-color: #f0f0f0;
+            border-radius: 25px;
+            overflow: hidden;
+        }
+
+        .view-toggle button {
+            padding: 10px 20px;
+            border: none;
+            background-color: transparent;
+            cursor: pointer;
+        }
+
+        .view-toggle button.active {
+            background-color: #2c5aa0;
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            height: calc(100vh - 200px);
+        }
+
+        .deals-list {
+            width: 45%;
+            background-color: white;
+            overflow-y: auto;
+            border-right: 1px solid #ddd;
+        }
+
+        .map-container {
+            width: 55%;
+            background-color: #e8f4f8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Deal Cards */
+        .deal-card {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .deal-card:hover {
+            background-color: #f9f9f9;
+        }
+
+        .deal-card.featured {
+            border-left: 4px solid #28a745;
+        }
+
+        .deal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .deal-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c5aa0;
+        }
+
+        .deal-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .restaurant-name {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .deal-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .deal-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .vote-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .vote-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 5px;
+        }
+
+        .vote-btn.upvote {
+            color: #28a745;
+        }
+
+        .vote-btn.downvote {
+            color: #dc3545;
+        }
+
+        .verified-badge {
+            background-color: #17a2b8;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        /* Map Placeholder */
+        .map-placeholder {
+            width: 80%;
+            height: 80%;
+            background-color: #d4edda;
+            border: 2px dashed #28a745;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+
+        .map-markers {
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            width: 60%;
+            height: 60%;
+        }
+
+        .marker {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .marker.green { background-color: #28a745; top: 30%; left: 40%; }
+        .marker.yellow { background-color: #ffc107; top: 60%; left: 25%; }
+        .marker.red { background-color: #dc3545; top: 45%; left: 70%; }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            background-color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -2px 4px rgba(0,0,0,0.1);
+        }
+
+        .add-deal-btn {
+            background-color: #ff6b35;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+            
+            .deals-list, .map-container {
+                width: 100%;
+                height: 50%;
+            }
+            
+            .filters {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">🍔 GoodEats</div>
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Enter ZIP code or city (e.g., 06516)">
+        </div>
+        <div class="header-actions">
+            <button class="btn btn-secondary">Filters ▼</button>
+            <button class="btn btn-primary">📱 Get App</button>
+            <div style="color: white;">👤 Profile</div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Find great local food deals near you</h1>
+        <p>Discover hidden gems and amazing offers from local restaurants</p>
+        <div class="app-download">
+            <button class="btn btn-primary">📲 Download App</button>
+            <button class="btn btn-secondary">📱 Text me the link</button>
+        </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filters">
+        <div class="filter-group">
+            <label>🍕 Cuisine:</label>
+            <select class="filter-select">
+                <option>All Types</option>
+                <option>Mexican</option>
+                <option>Asian</option>
+                <option>Italian</option>
+                <option>American</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>📍 Distance:</label>
+            <select class="filter-select">
+                <option>Within 5 miles</option>
+                <option>Within 2 miles</option>
+                <option>Within 1 mile</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label>💰 Price:</label>
+            <select class="filter-select">
+                <option>All Prices</option>
+                <option>Under $10</option>
+                <option>$10-$20</option>
+                <option>$20+</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <input type="checkbox" id="open-now">
+            <label for="open-now">🕒 Open Now</label>
+        </div>
+        <div class="view-toggle">
+            <button class="active">📋 List</button>
+            <button>🗺️ Map</button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Deals List -->
+        <div class="deals-list">
+            <div class="deal-card featured">
+                <div class="deal-header">
+                    <div>
+                        <div class="deal-title">🌮 Tacos Al Pastor Combo</div>
+                        <div class="restaurant-name">Taqueria El Sol</div>
+                    </div>
+                    <div class="deal-price">$5.00</div>
+                </div>
+                <div class="deal-meta">
+                    <span>📍 0.5 miles</span>
+                    <span>⭐ 4.7</span>
+                    <span>⏰ 11am-2pm</span>
+                    <span class="verified-badge">✅ Verified</span>
+                </div>
+                <div class="deal-actions">
+                    <div class="vote-container">
+                        <button class="vote-btn upvote">👍 12</button>
+                        <button class="vote-btn downvote">👎 2</button>
+                    </div>
+                    <button class="btn btn-secondary">👍 Helpful</button>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-header">
+                    <div>
+                        <div class="deal-title">🍜 Spicy Ramen Lunch Special</div>
+                        <div class="restaurant-name">Noodle House</div>
+                    </div>
+                    <div class="deal-price">$8.00</div>
+                </div>
+                <div class="deal-meta">
+                    <span>📍 1.2 miles</span>
+                    <span>⭐ 4.3</span>
+                    <span>⏰ Until 3pm</span>
+                    <span class="verified-badge">✅ Verified</span>
+                </div>
+                <div class="deal-actions">
+                    <div class="vote-container">
+                        <button class="vote-btn upvote">👍 8</button>
+                        <button class="vote-btn downvote">👎 1</button>
+                    </div>
+                    <button class="btn btn-secondary">👍 Helpful</button>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-header">
+                    <div>
+                        <div class="deal-title">🍕 Pizza Slice + Drink</div>
+                        <div class="restaurant-name">Mario's Pizza</div>
+                    </div>
+                    <div class="deal-price">$6.50</div>
+                </div>
+                <div class="deal-meta">
+                    <span>📍 0.8 miles</span>
+                    <span>⭐ 4.1</span>
+                    <span>⏰ 2pm-5pm</span>
+                    <span class="verified-badge">✅ Verified</span>
+                </div>
+                <div class="deal-actions">
+                    <div class="vote-container">
+                        <button class="vote-btn upvote">👍 5</button>
+                        <button class="vote-btn downvote">👎 0</button>
+                    </div>
+                    <button class="btn btn-secondary">👍 Helpful</button>
+                </div>
+            </div>
+
+            <div class="deal-card">
+                <div class="deal-header">
+                    <div>
+                        <div class="deal-title">🥙 Falafel Wrap Special</div>
+                        <div class="restaurant-name">Mediterranean Corner</div>
+                    </div>
+                    <div class="deal-price">$7.00</div>
+                </div>
+                <div class="deal-meta">
+                    <span>📍 1.5 miles</span>
+                    <span>⭐ 4.5</span>
+                    <span>⏰ All day</span>
+                    <span class="verified-badge">✅ Verified</span>
+                </div>
+                <div class="deal-actions">
+                    <div class="vote-container">
+                        <button class="vote-btn upvote">👍 15</button>
+                        <button class="vote-btn downvote">👎 3</button>
+                    </div>
+                    <button class="btn btn-secondary">👍 Helpful</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Container -->
+        <div class="map-container">
+            <div class="map-placeholder">
+                <h3>🗺️ Interactive Map</h3>
+                <p>Shows nearby restaurants with color-coded deal markers</p>
+                <div class="map-markers">
+                    <div class="marker green" title="Great Deal - Taqueria El Sol">$5</div>
+                    <div class="marker yellow" title="Good Deal - Noodle House">$8</div>
+                    <div class="marker red" title="Regular Deal - Mario's Pizza">$6.50</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <div class="bottom-nav">
+        <button class="add-deal-btn">➕ Add a Deal</button>
+        <div class="nav-actions">
+            <button class="nav-btn">🔔</button>
+            <button class="nav-btn">❤️</button>
+            <button class="nav-btn">👤</button>
+        </div>
+    </div>
+
+    <script>
+        // Simple interactivity for demonstration
+        document.querySelectorAll('.deal-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Highlight selected deal
+                document.querySelectorAll('.deal-card').forEach(c => c.style.backgroundColor = '');
+                this.style.backgroundColor = '#e3f2fd';
+                
+                // In a real app, this would show details modal or navigate to detail page
+                console.log('Deal clicked:', this.querySelector('.deal-title').textContent);
+            });
+        });
+
+        // Vote button functionality
+        document.querySelectorAll('.vote-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                // In real app, this would make API call to update vote count
+                console.log('Vote clicked:', this.textContent);
+            });
+        });
+
+        // Map markers interaction
+        document.querySelectorAll('.marker').forEach(marker => {
+            marker.addEventListener('click', function() {
+                // In real app, this would highlight corresponding deal in list
+                console.log('Marker clicked:', this.title);
+            });
+        });
+    </script>
+</body>
+</html>
